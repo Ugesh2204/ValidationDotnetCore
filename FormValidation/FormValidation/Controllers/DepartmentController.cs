@@ -20,25 +20,29 @@ namespace FormValidation.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View( await db.Departments.ToListAsync());
+            return View(await db.Departments.ToListAsync());
         }
 
 
         //Create Method#
-       [HttpGet]
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Department department)
+        public async Task<IActionResult> Create(Department department)
         {
-            db.Add(department);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                db.Add(department);
+                await db.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
 
             return View(department);
-
         }
 
     }
