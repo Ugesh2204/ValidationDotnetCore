@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FormValidation.Data;
+using FormValidation.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FormValidation.Controllers
@@ -26,6 +27,19 @@ namespace FormValidation.Controllers
         public IActionResult Create()
         {
             return View();
+
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+
+            db.Add(employee);
+            db.SaveChanges();
+
+            return View(employee);
 
         }
     }

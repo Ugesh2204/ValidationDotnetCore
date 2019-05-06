@@ -5,14 +5,72 @@
 
 <div class="Container">
 
-    <h2>Create</h2>
+    <h2>Add Employee </h2>
 
     <form asp-action="Create" method="Post">
 
+  
+
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Title"></label>
+            </div>
+
+            <div class="col-8">
+                <select asp-for="Title" asp-items="Html.GetEnumSelectList<Employee.ETitle>()" ></select>
+            </div>
+        </div>
 
 
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="EmployeeFirstName"></label>
+            </div>
+
+            <div class="col-8">
+                <input type="text" asp-for="EmployeeFirstName" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="EmployeeLastName"></label>
+            </div>
+
+            <div class="col-8">
+                <input type="text" asp-for="EmployeeLastName" />
+            </div>
+        </div>
+
+        <input type="submit" value="Create" />
 
     </form>
 </div>
 
+
+
+
+@*[Key]
+    public int EmployeeId { get; set; }
+
+    [Required]
+    public string Title { get; set; }
+    public enum ETitle { Mr = 1, Mrs = 2, Miss = 3 }
+
+    [Required]
+    public string EmployeeFirstName { get; set; }
+
+
+    [Required]
+    public string EmployeeLastName { get; set; }
+
+    //[Required]
+    //public string Email { get; set; }
+
+
+    [Required]
+    public double Salary { get; set; }
+
+    [Required]
+    public DateTime HireDate { get; set; }*@
 
