@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FormValidation.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FormValidation.Controllers
 {
@@ -16,9 +17,9 @@ namespace FormValidation.Controllers
             db = _db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View( await db.Departments.ToListAsync());
         }
     }
 }
