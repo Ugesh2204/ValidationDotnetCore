@@ -3,6 +3,30 @@
     ViewData["Title"] = "Create";
 }
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $.ajax({
+
+            url: '/Employee/GetSelectDepartment',
+            datatype: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                console.log("Every thing is fine");
+
+            }
+
+
+        });
+
+    });
+
+</script>
+
+
+
 <div class="Container">
 
     <h2>Add Employee </h2>
@@ -54,7 +78,7 @@
 
             <div class="col-4">
                 <select class="form-control" id="DepartmentId" name="DepartmentId" asp-for="DepartmentId"
-                        asp-items="@(new SelectList(string.Empty,"DepartmentId", "DepartmentName"))"></select>
+                 asp-items="@(new SelectList(string.Empty,"DepartmentId", "DepartmentName"))"></select>
             </div>
         </div>
 
