@@ -14,13 +14,15 @@
             datatype: 'GET',
             datatype: 'json',
             success: function (data) {
-                console.log("Every thing is fine");
+                var items = '';
+                $("#DepartmentId").empty();
+                $.each(data, function (i, department) {
+                    items += "<option value='" + department.value + "'>" + department.text + "</option>";
+                });
 
+                $('#DepartmentId').html(items);
             }
-
-
         });
-
     });
 
 </script>
@@ -77,7 +79,7 @@
             </div>
 
             <div class="col-4">
-                <select class="form-control" id="DepartmentId" name="DepartmentId" asp-for="DepartmentId"
+                <select id="DepartmentId" name="DepartmentId" asp-for="DepartmentId"
                  asp-items="@(new SelectList(string.Empty,"DepartmentId", "DepartmentName"))"></select>
             </div>
         </div>
