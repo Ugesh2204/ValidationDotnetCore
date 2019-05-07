@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FormValidation.Data;
 using FormValidation.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace FormValidation.Controllers
@@ -69,5 +70,27 @@ namespace FormValidation.Controllers
 
             return View(employee);
         }
+
+
+
+        //Ajax Dropdown List
+        //Loading List of Department into a DropDown List 
+
+
+        public IActionResult GetSelectDepartment ()
+        {
+            List<Department> dptlist = new List<Department>();
+
+            //Getting Data
+            dptlist = (from department in db.Departments select department).ToList();
+
+            //Insert select item into list
+
+            dptlist.Insert(0, new Department { DepartmentId = 0, DepartmentName = "Select" });
+
+            return Json(new SelectList(dptlist, "DepartmentId", "DepartmentName"));
+        }
+
+
     }
 }
